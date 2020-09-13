@@ -7,28 +7,49 @@ public class OpenSkill : MonoBehaviour
     public GameObject skill;
     public GameObject team;
     public GameObject setUI;
+    public GameObject fire;
+    public GameObject potion;
+    public GameObject joy;
     public bool skillOpen;
     public bool teamOpen;
     public bool setUiOpen;
+    public int righthand;
     void Start()
     {
-        
+        righthand = PlayerPrefs.GetInt("right");
+        if (righthand==1) right();
+
     }
-  
+    public void left()
+    {
+        righthand = 0;
+        joy.transform.position = new Vector3(-45,0,0);
+        potion.transform.position = new Vector3(300, 90, 0);
+        fire.transform.position =new Vector3(420, 180, 0);
+    }
+    public void right()
+    {
+        righthand = 1;
+        joy.transform.position = new Vector3(220, 0, 0);
+        potion.transform.position = new Vector3(70, 90, 0);
+        fire.transform.position = new Vector3(180, 180, 0);
+    }
+
+
     public void openUI()
     {
         setUiOpen = !setUiOpen;
         setUI.SetActive(setUiOpen);
-        if(setUiOpen==true)
+        if (setUiOpen == true)
         {
-            if(Time.timeScale==1)
+            if (Time.timeScale == 1)
             {
                 PauseGame();
             }
         }
         if (setUiOpen == false)
         {
-            if(Time.timeScale==0)
+            if (Time.timeScale == 0)
             {
                 ResumeGame();
             }
@@ -46,7 +67,7 @@ public class OpenSkill : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public  void openskill()
+    public void openskill()
     {
         skillOpen = !skillOpen;
         skill.SetActive(skillOpen);
@@ -59,6 +80,6 @@ public class OpenSkill : MonoBehaviour
 
     void Update()
     {
-        
+        PlayerPrefs.SetInt("right", righthand);
     }
 }

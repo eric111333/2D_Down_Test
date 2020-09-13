@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 529576999390005062}
   - component: {fileID: -7616467034712287940}
   - component: {fileID: -2145614573991905833}
+  - component: {fileID: 7770591600383951930}
   m_Layer: 8
   m_Name: Cloud
   m_TagString: Ground
@@ -156,3 +157,22 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!95 &7770591600383951930
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359050715102621449}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f5fa2d0e3c4a8049804b5281c92a4be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
