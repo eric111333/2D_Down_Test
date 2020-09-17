@@ -41,6 +41,7 @@ public class Potion : MonoBehaviour
     }
     public void skill()
     {
+
         if (fire.fillAmount >= 1 && Player.mp >= 2)
         {
             for (int i = 0; i < skillpuls; i++)

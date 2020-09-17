@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,9 @@ public class FireBall : MonoBehaviour
     // ???  看下面解釋
     private Transform myTransform;
     // ???
+    public List<GameObject> enemys;
+    public List<float> enemyDistance = new List<float>();
+
     Rigidbody2D rb;
     void Awake()
     {
@@ -24,24 +27,40 @@ public class FireBall : MonoBehaviour
 
     void Start()
     {
+        Find();
         rb = GetComponent<Rigidbody2D>();
         //  通過標籤去查詢遊戲物件
         //GameObject go = GameObject.FindGameObjectWithTag("敵人");
-        target = GameObject.FindWithTag("敵人").transform.position;
+        //target = GameObject.FindWithTag("敵人").transform.position;
         //  將它的transform指定給target
         //target = go.transform;
         maxDistance = 0;
         Destroy(gameObject, 8);
 
     }
+    public void Find()
+    {
+        enemys = GameObject.FindGameObjectsWithTag("敵人").ToList();
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            enemyDistance.Add(Vector3.Distance(transform.position, enemys[i].transform.position));
+
+            float min = enemyDistance.Min();
+            int index = enemyDistance.IndexOf(min);
+            target = enemys[index].transform.position;
+        }
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag== "enemy")
+        if(collision.tag== "敵人")
         Destroy(gameObject);
     }
 
     void Update()
     {
+        
         //  在敵人和玩家之間畫一條線
         Debug.DrawLine(target, myTransform.position, Color.red);
         //  看著目標
