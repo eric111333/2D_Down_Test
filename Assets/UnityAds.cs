@@ -6,13 +6,13 @@ using UnityEngine.Advertisements;
 public class UnityAds : MonoBehaviour, IUnityAdsListener
 {
     string GooglePlay_ID = "3820163";
-    bool TestMode = true;
+    bool GameMode = true;
     string myPlacementId = "rewardedVideo";
 
     void Start()
     {
         Advertisement.AddListener(this);
-        Advertisement.Initialize(GooglePlay_ID, TestMode);
+        Advertisement.Initialize(GooglePlay_ID, GameMode);
     }
     public void DisplayAD()
     {

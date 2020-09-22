@@ -9,16 +9,19 @@ public class Enemy00 : enemy
     public static int Hp = 500;
     public static int HpMax = 500;
     private Animator ani;
-    public static int bossDieNum=0;
+    public static int bossDieNum = 0;
     public static bool bossDie;
+    private Image hpBar;
+    //public Vector3 target;
     void Start()
     {
         Hp = 500 + 100 * bossDieNum;
-        HpMax = 500+100*bossDieNum;
+        HpMax = 500 + 100 * bossDieNum;
         ani = GetComponent<Animator>();
         dropRate = Random.Range(0, 100);
         bossDie = false;
         Hp = HpMax;
+        hpBar = GameObject.Find("BOSS血").GetComponent<Image>();
     }
     public override void TakeDamage(int damage)
     {
@@ -27,6 +30,7 @@ public class Enemy00 : enemy
         ani.SetTrigger("hit");
         GameObject points = Instantiate(hitPrint, transform.position, Quaternion.identity) as GameObject;
         points.transform.GetChild(0).GetComponent<TextMesh>().text = "" + damage;
+        hpBar.fillAmount = Hp / maxHealth;
         if (Hp <= 0)
         {
             if (dropRate <= 10)
@@ -39,6 +43,7 @@ public class Enemy00 : enemy
             {
                 Instantiate(gold, pos, Quaternion.identity);
             }
+            
             Die();
         }
     }
@@ -51,6 +56,7 @@ public class Enemy00 : enemy
             Vector3 pos = new Vector3(transform.position.x + Random.Range(-0.1f, 0.1f), transform.position.y, 0);
             GameObject points = Instantiate(hitPrint, transform.position, Quaternion.identity) as GameObject;
             points.transform.GetChild(0).GetComponent<TextMesh>().text = "" + attack.attackDamage * 2;
+            hpBar.fillAmount = Hp / maxHealth;
             if (Hp <= 0)
             {
                 if (dropRate <= 10)
@@ -63,6 +69,7 @@ public class Enemy00 : enemy
                 {
                     Instantiate(gold, pos, Quaternion.identity);
                 }
+                
                 Die();
                 return;
             }
@@ -80,10 +87,17 @@ public class Enemy00 : enemy
         Debug.Log("999");
         //GroundNum.bosskiller += 20 + bossDieNum;
         //GroundNum.bossNum++;
-        
+        Invoke("Bossdie", 1);
+
     }
     void Update()
     {
-
+        //hpBar.fillAmount = Hp / HpMax;
+        //Move();
     }
+    void Bossdie()
+    {
+        bossDie = false;
+    }
+    
 }

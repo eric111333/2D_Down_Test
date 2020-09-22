@@ -55,7 +55,7 @@ public class Enemy01 : enemy
     {
         if (collision.tag == "fireball")
         {
-            Debug.Log("123");
+            //Debug.Log("123");
             E01Health -= attack.attackDamage * 2;
             Vector3 pos = new Vector3(transform.position.x + Random.Range(-0.1f, 0.1f), transform.position.y, 0);
             GameObject points = Instantiate(hitPrint, transform.position, Quaternion.identity) as GameObject;

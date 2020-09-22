@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     public static float mpMax = 10;
     private Image mpBar;
     private float mpTime;
-    private float mpCd=5;
+    private float mpCd = 5;
 
     public static int goldNum;
     public Text goldtext;
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     public static bool front;
 
 
-    
+
 
 
     /*public void ControlSpeed()
@@ -111,10 +111,10 @@ public class Player : MonoBehaviour
         aud = GetComponent<AudioSource>();
         hpBar = GameObject.Find("血條").GetComponent<Image>();
         mpBar = GameObject.Find("魔力條").GetComponent<Image>();
-       // hp = hpMax;
-        
-        
-        //goldNum = 1000;
+        // hp = hpMax;
+        mp = mpMax;
+
+        //goldNum += 1000;
 
     }
 
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         {
 
             mpTime += Time.deltaTime;
-            if (mpTime >= mpCd) { mp++; mpTime = 0; }        
+            if (mpTime >= mpCd) { mp++; mpTime = 0; }
         }
 
         //MovementX();
@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
             jumpCount = 2;
             isjump = false;
         }
-        if (joy.Vertical>0.3f && grounded)
+        if (joy.Vertical > 0.3f && grounded)
         {
             isjump = true;
             playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, yForce);
@@ -265,12 +265,22 @@ public class Player : MonoBehaviour
         }
         if (collision.tag == "Gold")
         {
-            goldNum++;
+            if (gold.count > 0)
+            {
+                goldNum++;
+                gold.count--;
+            }
+
 
         }
         if (collision.tag == "potion")
         {
-            Potion.potionNum++;
+            if (gold.count > 0)
+            {
+                Potion.potionNum++;
+                gold.count--;
+            }
+
         }
         if (collision.tag == "敵人")
         {
@@ -287,7 +297,7 @@ public class Player : MonoBehaviour
             hpBar.fillAmount = hp / hpMax;
             aniPlayer.SetTrigger("hurt");
             DamageText(100);
-            playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x,yForce*3);
+            playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, yForce * 3);
             if (hp <= 0) Dead();
         }
     }
@@ -310,7 +320,7 @@ public class Player : MonoBehaviour
         final.SetActive(true);
         //gm.GameOver();
         dead = true;
-        
+
 
     }
 }

@@ -26,7 +26,7 @@ public class GroundNum : MonoBehaviour
         }
         if(bosskiller<=0)
             bosskiller = 0;
-        if (Enemy00.bossDie == true)
+        if (Enemy00.bossDie)
         {
             Debug.Log("111");
             Enemy00.bossDieNum++;

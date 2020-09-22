@@ -17,12 +17,12 @@ public class EndGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Enemy00.bossDie == true)
+        if (Enemy00.bossDie)
         {
             Debug.Log("456");
             GetComponent<Platform>().enabled=true;
             Destroy(this.gameObject, 5);
-            Enemy00.bossDie = false;
+            
         }
     }
 
