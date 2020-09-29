@@ -30,7 +30,7 @@ public class enemy : MonoBehaviour
         points.transform.GetChild(0).GetComponent<TextMesh>().text = "" + damage;
         if (currentHealth<=0)
         {
-            if(dropRate<=10)
+            if(dropRate<=30)
             {
                 Instantiate(potion, pos, Quaternion.identity);
             }
@@ -59,7 +59,7 @@ public class enemy : MonoBehaviour
             points.transform.GetChild(0).GetComponent<TextMesh>().text = "" + attack.attackDamage * 2;
             if (currentHealth <= 0)
             {
-                if (dropRate <= 10)
+                if (dropRate <= 30)
                 {
                     Instantiate(potion, pos, Quaternion.identity);
                 }

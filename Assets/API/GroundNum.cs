@@ -8,6 +8,7 @@ public class GroundNum : MonoBehaviour
     public GameObject boss;
     public static int bossNum=1;
     public GameObject endground;
+    public GameObject endBoss;
     public static int bosskiller;
     public Text bossdie;
     //public Transform startline;
@@ -15,7 +16,7 @@ public class GroundNum : MonoBehaviour
     {
 
         Vector3 poss = new Vector3(0, -3, 0);
-        if (bosskiller <= 0 &&bossNum>0)
+        if (bosskiller <= 0 && bossNum>0)
         {
             bossNum--;
             Vector3 pos = new Vector3(0, -5.1f, 0);
@@ -26,14 +27,17 @@ public class GroundNum : MonoBehaviour
         }
         if(bosskiller<=0)
             bosskiller = 0;
-        if (Enemy00.bossDie)
+        if (Enemy00.bossdieone>0)
         {
-            Debug.Log("111");
+            //Debug.Log("111");
             Enemy00.bossDieNum++;
             Spawner.spawnTime = 1.2f;
             bosskiller += 10+Enemy00.bossDieNum;
             bossNum++;
             bossdie.text = "" + Enemy00.bossDieNum;
+            Vector3 pos = new Vector3(0, -4f, 0);
+            Instantiate(endBoss, pos, Quaternion.identity);
+            Enemy00.bossdieone=0;
             //Enemy00.bossDie = false;
         }
     }

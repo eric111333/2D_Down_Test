@@ -66,15 +66,25 @@ public class FireBall : MonoBehaviour
         //  看著目標
         float eul = target.z -myTransform.position.z;
         myTransform.rotation = Quaternion.Euler(0f, 0f, eul);
-        if (transform.position.x < target.x|| transform.position.y < target.y)
+        if (transform.position.x < target.x && transform.position.y < target.y)
         {
-            rb.velocity = new Vector2(moveSpeed, moveSpeed);
+            rb.velocity = new Vector2(moveSpeed, moveSpeed*0.5f);
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else
+        if (transform.position.x > target.x && transform.position.y < target.y)
         {
-            rb.velocity = new Vector2(-moveSpeed, moveSpeed);
+            rb.velocity = new Vector2(-moveSpeed, moveSpeed * 0.5f);
             transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (transform.position.x > target.x && transform.position.y > target.y)
+        {
+            rb.velocity = new Vector2(-moveSpeed, -moveSpeed * 0.5f);
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (transform.position.x < target.x && transform.position.y > target.y)
+        {
+            rb.velocity = new Vector2(moveSpeed, -moveSpeed * 0.5f);
+            transform.localScale = new Vector3(1, 1, 1);
         }
         //myTransform.rotation =Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target - myTransform.position),Time.deltaTime*rotationSpeed);
         //  判斷敵人和玩家之間的距離是否大於最大距離

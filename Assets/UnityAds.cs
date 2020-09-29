@@ -6,7 +6,7 @@ using UnityEngine.Advertisements;
 public class UnityAds : MonoBehaviour, IUnityAdsListener
 {
     string GooglePlay_ID = "3820163";
-    bool GameMode = true;
+    bool GameMode = false;
     string myPlacementId = "rewardedVideo";
 
     void Start()
@@ -62,7 +62,7 @@ public class UnityAds : MonoBehaviour, IUnityAdsListener
         // If the ready Placement is rewarded, show the ad:
         if (placementId == myPlacementId)
         {
-            Debug.LogWarning("11");
+            //Debug.LogWarning("11");
             // Optional actions to take when the placement becomes ready(For example, enable the rewarded ads button)
         }
     }

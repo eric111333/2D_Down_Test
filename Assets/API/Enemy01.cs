@@ -38,7 +38,7 @@ public class Enemy01 : enemy
         points.transform.GetChild(0).GetComponent<TextMesh>().text = "" + damage;
         if (E01Health <= 0)
         {
-            if (dropRate <= 10)
+            if (dropRate <= 30)
             {
                 Instantiate(potion, pos, Quaternion.identity);
             }
@@ -62,7 +62,7 @@ public class Enemy01 : enemy
             points.transform.GetChild(0).GetComponent<TextMesh>().text = "" + attack.attackDamage * 2;
             if (E01Health <= 0)
             {
-                if (dropRate <= 10)
+                if (dropRate <= 30)
                 {
                     Instantiate(potion, pos, Quaternion.identity);
                 }

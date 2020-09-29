@@ -10,9 +10,11 @@ public class OpenSkill : MonoBehaviour
     public GameObject fire;
     public GameObject potion;
     public GameObject joy;
+    public GameObject help;
     public bool skillOpen;
     public bool teamOpen;
     public bool setUiOpen;
+    public bool helpUI;
     public int righthand;
     void Start()
     {
@@ -76,6 +78,12 @@ public class OpenSkill : MonoBehaviour
     {
         teamOpen = !teamOpen;
         team.SetActive(teamOpen);
+    }
+    public void openHelpUI()
+    {
+        helpUI = !helpUI;
+        help.SetActive(helpUI);
+        
     }
 
     void Update()

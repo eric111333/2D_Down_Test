@@ -19,7 +19,7 @@ public class EndGround : MonoBehaviour
     {
         if (Enemy00.bossDie)
         {
-            Debug.Log("456");
+            //Debug.Log("456");
             GetComponent<Platform>().enabled=true;
             Destroy(this.gameObject, 5);
             

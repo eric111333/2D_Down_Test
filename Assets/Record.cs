@@ -8,7 +8,7 @@ public class Record : MonoBehaviour
     public GameObject playeraudios;
     void Start()
     {
-        InvokeRepeating("Rec", 0, 1);
+        InvokeRepeating("Rec", 1, 1);
         //PlayerPrefs.DeleteKey("goldNum");
         //PlayerPrefs.DeleteAll();
        /* PlayerPrefs.DeleteKey("playerhpMax");
@@ -44,6 +44,8 @@ public class Record : MonoBehaviour
         PlayerPrefs.SetInt("HpPulsNum", Potion.HpPulsNum);
         PlayerPrefs.SetFloat("volume", audios.GetComponent<AudioSource>().volume);
         PlayerPrefs.SetInt("skillpuls", Potion.skillpuls);
-        
+        PlayerPrefs.SetFloat("playermpMax", Player.mpMax);
+        PlayerPrefs.SetInt("mppuls", Potion.mpPuls);
+
     }
 }

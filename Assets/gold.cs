@@ -11,7 +11,7 @@ public class gold : MonoBehaviour
 
     void Start()
     {
-        count = 1;
+        count = Random.Range(1,5);
         movebool = false;
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 20);
@@ -45,11 +45,11 @@ public class gold : MonoBehaviour
     */
     void Find()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform.position;
+        target = GameObject.FindGameObjectWithTag("Player").transform.position-transform.up*0.5f;
     }
     void Move()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform.position;
+        target = GameObject.FindGameObjectWithTag("Player").transform.position - transform.up * 0.5f;
         transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
         /*Debug.DrawLine(target, transform.position, Color.red);
         float eul = target.z - transform.position.z;

@@ -8,14 +8,17 @@ public class Potion : MonoBehaviour
     public Text atkDamage;
     public Text HpPuls;
     public Text SkillPulstext;
+    public Text mpPulstext;
     public static int atkDamageNum;
     public static int skillpuls;
+    public static int mpPuls;
     public GameObject Fireball;
     public GameObject target;
     public GameObject printitem;
     public Text goldNum;
     public Text goldNum1;
     public Text goldskillNum;
+    public Text goldmpNum;
     private Image fire;
     //private Image fire2;
     private float firetime;
@@ -37,6 +40,7 @@ public class Potion : MonoBehaviour
         HpPulsNum = PlayerPrefs.GetInt("HpPulsNum");
         atkDamageNum = PlayerPrefs.GetInt("atkDamageNum");
         potionNum = PlayerPrefs.GetInt("potionNum");
+        mpPuls= PlayerPrefs.GetInt("mppuls");
 
     }
     public void skill()
@@ -79,12 +83,31 @@ public class Potion : MonoBehaviour
             skillpuls++;
             GameObject points = Instantiate(printitem, t0, Quaternion.identity) as GameObject;
             points.transform.GetChild(0).GetComponent<TextMesh>().text = "火球*" + skillpuls;
-        }else
+        }
         if (Player.goldNum < skillpuls * 1000)
         {
             GameObject points = Instantiate(printitem, t0, Quaternion.identity) as GameObject;
             points.transform.GetChild(0).GetComponent<TextMesh>().text = "金錢不足";
         }
+    }
+    public void PulsMp()
+    {
+        if (Player.goldNum >= mpPuls * 200)
+        {
+            Player.goldNum -= mpPuls * 200;
+            mpPuls++;
+        Player.mpMax += 2;
+        GameObject points = Instantiate(printitem, t0, Quaternion.identity) as GameObject;
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = "MPMAX+" + 2;
+        }
+            
+        if (Player.goldNum < mpPuls * 200)
+        {
+            GameObject points = Instantiate(printitem, t0, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "金錢不足";
+        }
+
+
     }
 
     public void PulsDamage()
@@ -150,5 +173,7 @@ public class Potion : MonoBehaviour
         HpPuls.text = "" + HpPulsNum;
         SkillPulstext.text = "" + skillpuls;
         goldskillNum.text = "" + skillpuls * 1000;
+        mpPulstext.text = "" + mpPuls;
+        goldmpNum.text = "" + mpPuls * 200;
     }
 }

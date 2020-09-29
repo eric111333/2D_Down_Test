@@ -40,8 +40,8 @@ public class Player : MonoBehaviour
     [Header("血顯示數字")]
     public Text textHp;
     public Text textHpmax;
-    public static float mp = 10;
-    public static float mpMax = 10;
+    public static float mp;
+    public static float mpMax ;
     private Image mpBar;
     private float mpTime;
     private float mpCd = 5;
@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         hpMax = PlayerPrefs.GetFloat("playerhpMax");
+        mpMax = PlayerPrefs.GetFloat("playermpMax");
         hp = hpMax;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         //sprPlayer = GetComponent<SpriteRenderer>();
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
         // hp = hpMax;
         mp = mpMax;
 
-        //goldNum += 1000;
+        //goldNum += 100000;
 
     }
 
